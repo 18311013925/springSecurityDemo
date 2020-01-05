@@ -5,49 +5,49 @@
 
 <generatorConfiguration>
     <classPathEntry
-            location="/Users/lizhi/.m2/repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar"/>
-    <context id="DB2Tables" targetRuntime="MyBatis3">
-        <!--添加这个标签，就证明不会添加备注到代码里面-->
+            location="/Users/lizhi/.m2/repository/mysql/mysql-connector-java/5.1.23/mysql-connector-java-5.1.23.jar"/>
+
+    <context id="mysql-tables" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
-        <!--配置数据库连接-->
+        <!--数据库链接地址账号密码-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/security"
-                        userId="root"
-                        password="lizhi123456">
+                        connectionURL="jdbc:mysql://localhost:3306/security?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+                        userId="root" password="lizhi123456">
         </jdbcConnection>
 
         <javaTypeResolver>
-            <property name="forceBigDecimals" value="false"/>
+            <property name="forceBigDecimals" value="true"/>
         </javaTypeResolver>
 
-        <!--指定生成javabean的位置-->
-        <javaModelGenerator targetPackage="com.lizhi.bean" targetProject=".\src\main\java">
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.lizhi.model"
+                            targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <!--指定sql的映射文件-->
-        <sqlMapGenerator targetPackage="com.lizhi.mapper" targetProject=".\src\main\resources">
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="com.lizhi.mapper"
+                         targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <!--指定dao接口生成的位置，mapper接口-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lizhi.mapper" targetProject=".\src\main\java">
+        <!--生成Dao类存放位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.lizhi.mapper"
+                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!--table的生成策略-->
-        <!-- <table tableName="ALLTYPES" domainObjectName="Customer" >
-             <property name="useActualColumnNames" value="true"/>
-             <generatedKey column="ID" sqlStatement="DB2" identity="true" />
-             <columnOverride column="DATE_FIELD" property="startDate" />
-             <ignoreColumn column="FRED" />
-             <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
-         </table> -->
-        <table tableName="users" domainObjectName="Users"></table>
+        <table domainObjectName="Users" tableName="users"></table>
 
     </context>
 </generatorConfiguration>
