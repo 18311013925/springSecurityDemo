@@ -1,10 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea/.gitignore
-.idea/compiler.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/uiDesigner.xml
-.idea/vcs.xml
-
+.idea/*
 springSecurityDemo.iml
 target/
+target/*

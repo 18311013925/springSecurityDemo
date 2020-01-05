@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cdac04e-ea72-4ba0-b9cc-da17f6339480" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +122,7 @@
       <workItem from="1578105315621" duration="7327000" />
       <workItem from="1578119774993" duration="3457000" />
       <workItem from="1578222632480" duration="2414000" />
-      <workItem from="1578226370136" duration="938000" />
+      <workItem from="1578226370136" duration="1068000" />
     </task>
     <task id="LOCAL-00001" summary="springsecurity commit">
       <created>1578224176224</created>
@@ -131,7 +131,21 @@
       <option name="project" value="LOCAL" />
       <updated>1578224176224</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="springsecurity commit">
+      <created>1578227360618</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1578227360618</updated>
+    </task>
+    <task id="LOCAL-00003" summary="delete ignore.xml">
+      <created>1578227397044</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1578227397044</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,17 +153,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="springsecurity commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="springsecurity commit" />
+    <MESSAGE value="delete ignore.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete ignore.xml" />
   </component>
   <component name="WindowStateProjectService">
     <state x="304" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578131252250">
       <screen x="0" y="23" width="1680" height="955" />
     </state>
     <state x="304" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.955@0.23.1680.955" timestamp="1578131252250" />
-    <state x="394" y="101" key="CommitChangelistDialog2" timestamp="1578227360479">
+    <state x="394" y="101" key="CommitChangelistDialog2" timestamp="1578227396897">
       <screen x="0" y="23" width="1680" height="955" />
     </state>
-    <state x="394" y="101" key="CommitChangelistDialog2/0.23.1680.955@0.23.1680.955" timestamp="1578227360479" />
+    <state x="394" y="101" key="CommitChangelistDialog2/0.23.1680.955@0.23.1680.955" timestamp="1578227396897" />
+    <state x="148" y="109" key="DiffContextDialog" timestamp="1578227394937">
+      <screen x="0" y="23" width="1680" height="955" />
+    </state>
+    <state x="148" y="109" key="DiffContextDialog/0.23.1680.955@0.23.1680.955" timestamp="1578227394937" />
     <state width="1638" height="256" key="GridCell.Tab.0.bottom" timestamp="1578227312547">
       <screen x="0" y="23" width="1680" height="955" />
     </state>
