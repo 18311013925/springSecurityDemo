@@ -53,7 +53,12 @@ public class MyWebAuthenticationDetails extends WebAuthenticationDetails {
 
     // 获取验证码
     protected String obtainCaptcha(HttpServletRequest request) {
-        return (String) request.getSession().getAttribute("reqCaptcha");
+        AuthenticationBean authenticationBean = (AuthenticationBean) request.getSession().getAttribute("authenticationBean");
+        String captcha = "";
+        if (authenticationBean != null) {
+            captcha = authenticationBean.getCaptcha();
+        }
+        return captcha;
     }
 
 

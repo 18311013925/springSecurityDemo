@@ -1,20 +1,17 @@
 package com.lizhi.security.exception;
 
+
+import org.springframework.security.core.AuthenticationException;
+
 /**
  * @author: lizhi
  * @Date: 2020/1/8 14:35
  * @Description:
  */
-public class VerificationCodeException extends ServiceException {
-
-    public VerificationCodeException() {
+public class VerificationCodeException extends AuthenticationException {
+    public VerificationCodeException(String explanation) {
+        super(explanation);
     }
 
-    public VerificationCodeException(ErrorCode errorCode, Object... arguments) {
-        super(errorCode, arguments);
-    }
 
-    public VerificationCodeException(Integer code, String pattern, Object... arguments) {
-        super(code, pattern, arguments);
-    }
 }

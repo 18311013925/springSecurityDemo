@@ -3,8 +3,8 @@ package com.lizhi.security.config;
 import com.lizhi.security.userdetails.MyUserDetailsService;
 import com.lizhi.security.web.authentication.CustomAuthenticationFilter;
 import com.lizhi.security.web.authentication.MyAuthenticationFailHandler;
-import com.lizhi.security.web.authentication.MyAuthenticationProvider;
 import com.lizhi.security.web.authentication.MyAuthenticationSuccessHandler;
+import com.lizhi.security.web.authentication.rememberme.MyTokenBasedRememberMeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationDetailsSource;
@@ -14,8 +14,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
@@ -31,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private MyAuthenticationFailHandler myAuthenticationFailHandler;
 
     @Autowired
-    private MyUserDetailsService detailsService;
+    private UserDetailsService myUserDetailsService;
 
     @Autowired
     private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> myWebAuthenticationDetails;
@@ -44,6 +46,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider);
 
     }
+
+    @Autowired
+    private RememberMeServices myTokenBasedRememberMeServices;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception /**/{
@@ -60,12 +66,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
+    public CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
         CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
         filter.setAuthenticationSuccessHandler(myAuthenticationSuccessHandler);
         filter.setAuthenticationFailureHandler(myAuthenticationFailHandler);
         filter.setAuthenticationDetailsSource(myWebAuthenticationDetails);
+        filter.setRememberMeServices(myTokenBasedRememberMeServices);
         filter.setFilterProcessesUrl("/login");
+        // 实现自动登录
+
 
 
         //这句很关键，重用WebSecurityConfigurerAdapter配置的AuthenticationManager，不然要自己组装AuthenticationManager
@@ -85,4 +94,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return bCryptPasswordEncoder;
     }
 
+    @Bean
+    public RememberMeServices rememberMeServices() {
+//        这个key 我们自己指定
+        return new MyTokenBasedRememberMeServices("blurooo", myUserDetailsService);
+    }
 }

@@ -14,4 +14,5 @@ public class AuthenticationBean {
     private String username;
     private String password;
     private String captcha;
+    private String rememberme;
 }

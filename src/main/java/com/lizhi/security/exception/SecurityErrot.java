@@ -7,7 +7,7 @@ package com.lizhi.security.exception;
  */
 public enum SecurityErrot implements ErrorCode{
 
-    imageCode(10000, "图形验证码错误"),
+    IMAGE_CODE(10000, "图形验证码校验失败"),
 
     ;
     private final Integer code;
@@ -21,11 +21,12 @@ public enum SecurityErrot implements ErrorCode{
 
     @Override
     public Integer getCode() {
-        return null;
+        return this.code;
     }
 
     @Override
     public String getMessage() {
-        return null;
+        return this.message;
     }
+
 }

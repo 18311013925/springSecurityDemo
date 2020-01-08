@@ -47,8 +47,12 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table domainObjectName="User" tableName="users">
-            <columnOverride column="tinyint" jdbcType="java.lang.Boolean"/>
+        <!--<table domainObjectName="User" tableName="users">-->
+            <!--<columnOverride column="tinyint" jdbcType="java.lang.Boolean"/>-->
+        <!--</table>-->
+
+        <table domainObjectName="ersistentLogins" tableName="persistent_logins">
+
         </table>
 
     </context>

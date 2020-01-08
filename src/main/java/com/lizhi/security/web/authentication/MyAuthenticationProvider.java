@@ -2,6 +2,7 @@ package com.lizhi.security.web.authentication;
 
 import com.lizhi.security.exception.SecurityErrot;
 import com.lizhi.security.exception.VerificationCodeException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class MyAuthenticationProvider extends DaoAuthenticationProvider{
 
     // 把构造方法注入 UserDetailsService 和 PasswordEncoder
-    public MyAuthenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+    public MyAuthenticationProvider(@Qualifier("myUserDetailsService") UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         this.setUserDetailsService(userDetailsService);
         this.setPasswordEncoder(passwordEncoder);
     }
@@ -31,7 +32,8 @@ public class MyAuthenticationProvider extends DaoAuthenticationProvider{
         // 在这里可能会遇到一个问题，我们如何携带 验证吗信息??  Authentication Object getDetails();可以携带任意对象
         MyWebAuthenticationDetails details = (MyWebAuthenticationDetails) authentication.getDetails();
         if (!details.isImageCodeIsRight()) {
-            throw new VerificationCodeException(SecurityErrot.imageCode);
+
+            throw new VerificationCodeException(SecurityErrot.IMAGE_CODE.getMessage());
         }
 
         // 调用父类方法完成密码验证

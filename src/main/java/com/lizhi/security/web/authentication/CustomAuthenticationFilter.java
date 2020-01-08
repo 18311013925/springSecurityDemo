@@ -44,7 +44,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                         authenticationBean.getUsername(), authenticationBean.getPassword());
 
                 // 将扩展的参数，放到session中，如果不需要，可以删除掉，这是是为了测试图片验证吗
-                request.getSession().setAttribute("reqCaptcha", authenticationBean.getCaptcha());
+                request.getSession().setAttribute("authenticationBean", authenticationBean);
 
             } catch (IOException e) {
                 e.printStackTrace();
