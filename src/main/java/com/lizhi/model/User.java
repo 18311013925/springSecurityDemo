@@ -1,6 +1,6 @@
 package com.lizhi.model;
 
-public class Users {
+public class User {
     private Long id;
 
     private String username;

@@ -15,7 +15,7 @@
         <!--数据库链接地址账号密码-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/security?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
-                        userId="root" password="lizhi123456">
+                        userId="root" password="LiZhi123456">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -47,7 +47,9 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table domainObjectName="Users" tableName="users"></table>
+        <table domainObjectName="User" tableName="users">
+            <columnOverride column="tinyint" jdbcType="java.lang.Boolean"/>
+        </table>
 
     </context>
 </generatorConfiguration>
