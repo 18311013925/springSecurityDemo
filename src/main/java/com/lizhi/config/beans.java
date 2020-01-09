@@ -4,7 +4,7 @@ import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
@@ -13,7 +13,7 @@ import java.util.Properties;
  * @Date: 2020/1/8 15:59
  * @Description:
  */
-@Configuration
+@Component
 public class beans {
     /**
      * 图形验证码规格设置

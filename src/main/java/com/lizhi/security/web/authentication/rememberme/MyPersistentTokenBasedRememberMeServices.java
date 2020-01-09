@@ -2,22 +2,23 @@ package com.lizhi.security.web.authentication.rememberme;
 
 import com.lizhi.security.beans.AuthenticationBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author: lizhi 自动登录，散列加密方案
- * @Date: 2020/1/8 18:01
- * @Description: 实现自动登录，将用户信息保存在浏览器的cookie 中，
- * 因为我们是前后端分离， 所以我们这里需要扩展 TokenBasedRememberMeServices 重写rememberMeRequested方法，
- *
+ * @author: lizhi
+ * @Date: 2020/1/9 16:45
+ * @Description: 持久化令牌方案
  */
-public class MyTokenBasedRememberMeServices extends TokenBasedRememberMeServices {
+public class MyPersistentTokenBasedRememberMeServices extends PersistentTokenBasedRememberMeServices {
 
-    public MyTokenBasedRememberMeServices(String key, UserDetailsService userDetailsService) {
-        super(key, userDetailsService);
+
+    public MyPersistentTokenBasedRememberMeServices(String key, UserDetailsService userDetailsService, PersistentTokenRepository tokenRepository) {
+        super(key, userDetailsService, tokenRepository);
     }
+
 
     @Override
     protected boolean rememberMeRequested(HttpServletRequest request, String parameter) {
@@ -41,5 +42,4 @@ public class MyTokenBasedRememberMeServices extends TokenBasedRememberMeServices
 
         return false;
     }
-
 }
