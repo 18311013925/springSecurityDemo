@@ -3,9 +3,11 @@ package com.lizhi.config;
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
@@ -33,5 +35,4 @@ public class beans {
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
     }
-
 }

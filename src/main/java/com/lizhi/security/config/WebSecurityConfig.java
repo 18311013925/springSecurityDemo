@@ -3,7 +3,9 @@ package com.lizhi.security.config;
 import com.lizhi.security.web.authentication.CustomAuthenticationFilter;
 import com.lizhi.security.web.authentication.MyAuthenticationFailHandler;
 import com.lizhi.security.web.authentication.MyAuthenticationSuccessHandler;
+import com.lizhi.security.web.authentication.MyInvalidSessionStrategy;
 import com.lizhi.security.web.authentication.rememberme.MyPersistentTokenBasedRememberMeServices;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationDetailsSource;
@@ -20,9 +22,9 @@ import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.sql.DataSource;
 
 
 
@@ -51,7 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    private DataSource dataSource;
+    private HikariDataSource dataSource;
+
+//    @Autowired
+//    private SpringSessionBackedSessionRegistry redisSessionRegistry;
 
 
     @Override
@@ -60,9 +65,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/api/**").hasRole("ADMIN")
                 .antMatchers("/user/api/**").hasRole("USER")
                 .antMatchers("/app/api/**", "/captcha.jpg").permitAll()
+                .antMatchers("/remember/api/**").rememberMe()
                 .anyRequest().authenticated()
                 .and().formLogin().disable()
-                .csrf().disable();
+                .csrf().disable()
+                // 使用session 提供的会话注册表
+                .sessionManagement().invalidSessionStrategy(new MyInvalidSessionStrategy());
+
 
         //用重写的Filter替换掉原有的UsernamePasswordAuthenticationFilter
         http.addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -83,8 +92,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //这句很关键，重用WebSecurityConfigurerAdapter配置的AuthenticationManager，不然要自己组装AuthenticationManager
         filter.setAuthenticationManager(authenticationManagerBean());
-
-
         return filter;
     }
 

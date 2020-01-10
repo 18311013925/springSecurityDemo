@@ -1,5 +1,8 @@
 server:
   port: 8080
+  servlet:
+    session:
+      timeout: 60s
 
 spring:
   datasource:
@@ -18,6 +21,24 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 6000ms
+#    cluster:
+#      nodes: 10.10.30.31:16380,10.10.30.31:16379,10.10.30.31:16381,10.10.30.39:16379,10.10.30.39:16380,10.10.30.67:16380,10.10.30.67:16381
+#      max-redirects: 3
+#      #数据库索引，默认为0
+    database: 0
+    password:
+      # 如果使用的jedis 则将lettuce改成jedis即可
+    lettuce:
+      pool:
+        max-idle: 100
+        max-wait: 10000ms
+        max-active: 200
+        min-idle: 10000
+
 
 logging:
   config: classpath:logback-test.xml
