@@ -10,3 +10,4 @@ CREATE TABLE `t_secret_key` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_index_tenantId` (`tenant_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='第三方系统免密登陆加密秘钥';
+
