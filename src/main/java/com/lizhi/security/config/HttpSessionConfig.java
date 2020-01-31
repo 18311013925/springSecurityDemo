@@ -1,10 +1,10 @@
 package com.lizhi.security.config;
 
+import com.lizhi.config.redisConfig.RedisClusterConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -13,13 +13,11 @@ import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 /**
  * @author: lizhi
  * @Date: 2020/1/9 18:08
- * @Description:
+ * @Description:  session 集群会话管理有问题，还没有解决，等以后有时间在搞吧，不搞了
  */
 // 启用基于Redis的httpSession
 //@EnableRedisHttpSession
 public class HttpSessionConfig {
-
-
 
     @Autowired
     private FindByIndexNameSessionRepository sessionRepository;

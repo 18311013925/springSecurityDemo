@@ -51,7 +51,9 @@
             <!--<columnOverride column="tinyint" jdbcType="java.lang.Boolean"/>-->
         <!--</table>-->
 
-        <table domainObjectName="ersistentLogins" tableName="persistent_logins">
+        <!--<table domainObjectName="ersistentLogins" tableName="persistent_logins">-->
+        <table domainObjectName="secretKey" tableName="t_secret_key">
+
 
         </table>
 

@@ -1,6 +1,6 @@
 package com.lizhi.security.web.authentication;
 
-import com.lizhi.security.exception.SecurityErrot;
+import com.lizhi.security.exception.SecurityError;
 import com.lizhi.security.exception.VerificationCodeException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,7 +33,7 @@ public class MyAuthenticationProvider extends DaoAuthenticationProvider{
         MyWebAuthenticationDetails details = (MyWebAuthenticationDetails) authentication.getDetails();
         if (!details.isImageCodeIsRight()) {
 
-            throw new VerificationCodeException(SecurityErrot.IMAGE_CODE.getMessage());
+            throw new VerificationCodeException(SecurityError.IMAGE_CODE.getMessage());
         }
 
         // 调用父类方法完成密码验证
