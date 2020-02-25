@@ -105,6 +105,7 @@ public class ThirdCertificationResource {
         if (secretKey == null || StringUtils.isEmpty(secretKey.getPublicKey())) {
             throw new ServiceException(SecurityError.WITHOUT_SECRET_KEY_ERROR);
         }
+
         String publicKey= secretKey.getPublicKey();
         try {
             //转成字节数组，用公钥进行加密
@@ -113,7 +114,7 @@ public class ThirdCertificationResource {
             //用base64将密文字节数组转成密文字符串
             String ciphertext = Base64.encodeBase64URLSafeString(encodedData);
 
-            //用WBG私钥对加密数据进行签名，对方获取加密信息后，可用WBG开放的 公钥信息 和 签名，加密数据 三者进行验证，
+            // 用WBG私钥对加密数据进行签名，对方获取加密信息后，可用WBG开放的 公钥信息 和 签名，加密数据 三者进行验证，
             // 确保这份数据确实是微办公发出，且没有经过第三方篡改。验证通过，即可进行解密
             String signature = RSACoder.sign(encodedData, RSACoder.TENATN_PRIVATE_KEY);
             encryptData.setTicket(ciphertext);
@@ -125,7 +126,9 @@ public class ThirdCertificationResource {
     }
 
     public static void main(String[] args) {
-
+        ThirdCertificationResource thirdCertificationResource = new ThirdCertificationResource();
+        EncryptDataModel encryptDataForLogin = thirdCertificationResource.getEncryptDataForLogin();
+        System.out.printf("ex"+ encryptDataForLogin.toString());
     }
 }
 
