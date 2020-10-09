@@ -1,16 +1,11 @@
 package com.lizhi.security.web.authentication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lizhi.security.beans.AuthenticationBean;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.MediaType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * @author: lizhi
@@ -39,12 +34,10 @@ public class MyWebAuthenticationDetails extends WebAuthenticationDetails {
 
         // 取出session中的验证码
         String savedImageCode = (String) session.getAttribute("captcha");
-        //真是开发把这个去掉
-
+        //真实开发把这个去掉
         if (StringUtils.isNotEmpty(imageCode)) {
             // 清除验证码，不管是失败，还是成功，所有客户端都应在登录失败时刷新验证码
             session.removeAttribute("captcha");
-
             if (StringUtils.isNotEmpty(imageCode) && imageCode.equals(savedImageCode)) {
                 this.imageCodeIsRight = true;
             }

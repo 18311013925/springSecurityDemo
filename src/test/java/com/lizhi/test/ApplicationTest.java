@@ -30,8 +30,6 @@ public class ApplicationTest {
         List clientList = stringRedisTemplate.getClientList();
         System.out.println(clientList.toString());
         stringRedisTemplate.opsForSet().add("name1", "12313");
-
-
         Set<String> name1 = stringRedisTemplate.opsForSet().members("name1");
         System.out.println(name1.toArray());
     }
