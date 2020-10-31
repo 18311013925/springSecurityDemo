@@ -58,7 +58,8 @@ public class AppController {
         return user;
     }
 
-    public Boolean insert(@RequestBody AuthenticationBean authentication) {
+    @PutMapping("/insert/batch")
+    public Boolean insertBatch(@RequestBody AuthenticationBean authentication) {
         List<AuthenticationBean> authenticationBeans = new ArrayList<>();
         authenticationBeans.add(authentication);
         try (SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false)){
@@ -68,6 +69,13 @@ public class AppController {
             sqlSession.commit();
         }
         return false;
+    }
+
+    @PutMapping("/insert")
+    public Boolean insert(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        int insert = userMapper.insert(user);
+        return insert == 1;
     }
 
 
