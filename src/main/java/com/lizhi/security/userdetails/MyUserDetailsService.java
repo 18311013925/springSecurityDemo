@@ -43,6 +43,8 @@ public class MyUserDetailsService implements UserDetailsService{
 
         //解析 roles, 将数据库形式的roles 解析为UserDetails 的权限集
         // AuthorityUtils.commaSeparatedStringToAuthorityList 是Spring security 提供的，该方法用提将逗号隔开的权限集切割成可用权限对像列表， 也可以自己是吸纳，参考generateAuthorities
+        // 1. commaSeparatedStringToAuthorityList放入角色时需要加前缀ROLE_，而在controller使用时不需要加ROLE_前缀
+        // 2. 放入的是权限时，不能加ROLE_前缀，hasAuthority与放入的权限名称对应即可
         userInfo.setAuthorityList(AuthorityUtils.commaSeparatedStringToAuthorityList(userInfo.getRoles()));
         return userInfo;
     }

@@ -62,8 +62,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception /**/{
         http.authorizeRequests()
-                .antMatchers("/admin/api/**").hasRole("ADMIN")
-                .antMatchers("/user/api/**").hasRole("USER")
+
+                .antMatchers("/admin/api/**").hasRole("ADMIN") // 需要具有ROLE_ADMIN角色才能访问
+//                .antMatchers("/admin/api/**").hasAuthority("ADMIN") // 需要具有ROLE_ADMIN角色才能访问
+                .antMatchers("/user/api/**").hasRole("USER")  // 需要具有ROLE_USER角色才能访问
                 .antMatchers("/app/api/**", "/captcha.jpg").permitAll()
                 .antMatchers("/remember/api/**").rememberMe()
                 .anyRequest().authenticated()
